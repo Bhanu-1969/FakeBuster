@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="/static/result.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">FakeBuster</div>
+    </nav>
+    {% if review %}
+        <h2>Review: "{{ review }}"</h2>
+        <h3>Prediction: {{ prediction }}</h3>
+    {% elif title %}
+        <h2>Product: {{ title }}</h2>
+        <img src="{{ imgurl }}" alt="Product Image">
+        <h1>Fake Review Detection Results</h1>
+        <h2>Fake vs Original Reviews</h2>
+        <p>Fake Reviews: {{ fake_percent }}%</p>
+        <p>Original Reviews: {{ original_percent }}%</p>
+        <img src="{{ barchart_path }}" alt="Fake vs Original Reviews Bar Chart">
+        <h2>Sentiment Analysis</h2>
+        <img src="{{ piechart_path }}" alt="Sentiment Analysis Pie Chart">
+    {% elif error %}
+        <h3>Error: {{ error }}</h3>
+    {% endif %}
+    <a href="/">Go Back</a>
+</body>
+</html>

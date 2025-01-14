@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FakeBuster - Unmasking Deception in Reviews</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            FakeBuster</div>
+    </nav>
+    <h1>Amazon Fake Review Detector</h1>
+    <div class="container">
+    <form action="/predict" method="POST">
+        <div class="reviews">
+        <textarea name="review" placeholder="Enter a review" required></textarea>
+        <br>
+        <button type="submit">Analyze Review</button>
+        </div>
+    </form>
+    <div class="web">
+    <form action="/scrape" method="POST">
+        <input type="text" name="url" placeholder="Enter Product URL" required>
+        <br>
+        <button type="submit">Product Analysis</button>
+        <div/>
+    </form>
+</div>
+</body>
+</html>
