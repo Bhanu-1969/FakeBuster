@@ -9,10 +9,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import nltk
 import pickle
-nltk.download('wordnet')
-nltk.download('stopwords')
-nltk.download('punkt_tab',quiet=False)
-nltk.download('vader_lexicon')
+import nltk
+import os
+from nltk.data import find
+nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
+if not os.path.exists(nltk_data_path):
+    os.makedirs(nltk_data_path)
+nltk.data.path.append(nltk_data_path)
+
+
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
 vectorizer = CountVectorizer(max_features=5000)
