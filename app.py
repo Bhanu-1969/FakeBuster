@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request,url_for
 import requests
-from train import lemmatizerfun
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.stem import WordNetLemmatizer
 import pickle
 import matplotlib
 matplotlib.use('Agg')
@@ -12,6 +15,22 @@ from urllib.parse import urljoin
 import pandas as pd
 from urllib.parse import urlparse
 app = Flask(__name__)
+
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words('english'))
+vectorizer = CountVectorizer(max_features=5000)
+def lemmatizerfun(x):
+  removedstoppedword=[]
+  for review in x:
+      words = word_tokenize(review.lower())
+      cleaned_review = []
+      for word in words:
+          if word.isalpha() and word not in stop_words:
+              lemmatizer_word=lemmatizer.lemmatize(word)
+              cleaned_review.append(lemmatizer_word)
+      removedstoppedword.append(" ".join(cleaned_review))
+
+  return removedstoppedword
 with open("model.pkl", "rb") as model_file:
     model = pickle.load(model_file)
 
@@ -35,7 +54,7 @@ def predict():
         result='Original Review'
     else:
         result='Fake Review'
-    return render_template('result.html',review=review,prediction=prediction)
+    return render_template('result.html',review=review,result=result)
 def webscrapping(url):
     parsed_url=urlparse(url)
     if not parsed_url.scheme or not parsed_url.netloc:
