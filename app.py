@@ -13,9 +13,10 @@ from bs4 import BeautifulSoup
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from urllib.parse import urljoin
 import pandas as pd
+import nltk
 from urllib.parse import urlparse
 app = Flask(__name__)
-
+nltk.download('stopwords')
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
 vectorizer = CountVectorizer(max_features=5000)
