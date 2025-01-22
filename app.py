@@ -20,7 +20,7 @@ nltk.download('stopwords')
 nltk.download('vader_lexicon')
 # nltk.download('wordnet')
 # nltk.download('stopwords')
- nltk.download('punkt_tab',quiet=False)
+nltk.download('punkt_tab',quiet=False)
 # nltk.download('vader_lexicon')
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
@@ -37,6 +37,7 @@ def lemmatizerfun(x):
       removedstoppedword.append(" ".join(cleaned_review))
 
   return removedstoppedword
+
 with open("model.pkl", "rb") as model_file:
     model = pickle.load(model_file)
 
