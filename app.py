@@ -18,7 +18,7 @@ from urllib.parse import urlparse
 app = Flask(__name__)
 nltk.download('stopwords')
 nltk.download('vader_lexicon')
-# nltk.download('wordnet')
+nltk.download('wordnet')
 # nltk.download('stopwords')
 nltk.download('punkt_tab',quiet=False)
 # nltk.download('vader_lexicon')
