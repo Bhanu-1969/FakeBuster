@@ -88,7 +88,7 @@ def webscrapping(url):
            img=soup.find(class_='imgTagWrapper')
            imgurl=img.find('img')['src']
            title=soup.find('span',{'id':'productTitle'}).text.strip()
-        for n in range(1,5):
+        for n in range(1,2):
             url1=reviewurl.replace("cm_cr_dp_d_show_all_btm",f"cm_cr_arp_d_paging_btm_next_{n}") + f"&pageNumber={n}"
             page=requests.get(url1,headers=Headers)
             if page.status_code==200:
